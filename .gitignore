@@ -1,0 +1,7 @@
+/vendor/
+/.env
+/storage/field_map.json
+/storage/sync.lock
+/storage/logs/*.log
+.phpunit.result.cache
+
