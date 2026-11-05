@@ -166,6 +166,7 @@ class Mapper
                 'int', 'integer' => is_numeric($val) ? (int)$val : null,
                 'float', 'double' => is_numeric($val) ? (float)$val : null,
                 'string'    => (string)$val,
+                'country_name' => ($val == 219 || $val === 'United Arab Emirates') ? 'United Arab Emirates' : (string)$val,
                 'date'      => $this->formatDate($val, 'Y-m-d'),
                 'datetime'  => $this->formatDate($val, DateTimeInterface::ATOM),
                 default     => $val,

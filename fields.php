@@ -197,7 +197,7 @@ return [
         'label'        => 'Country',
         'multiple'     => false,
         'reelly_owned' => true,
-        'transform'    => 'string',
+        'transform'    => 'country_name',
     ],
     [
         'key'          => 'city',

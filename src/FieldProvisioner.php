@@ -119,6 +119,7 @@ class FieldProvisioner
         $this->logger->info("Querying userfieldconfig.list for entityId {$entityId}...");
         $listResponse = $this->bitrixClient->call('userfieldconfig.list', [
             'moduleId' => 'crm',
+            'filter'   => ['entityId' => $entityId],
         ]);
 
         $rawFieldsList = $listResponse['result']['fields'] ?? [];
@@ -187,6 +188,11 @@ class FieldProvisioner
                 'listColumnLabel' => ['en' => (string)$def['label']],
                 'listFilterLabel' => ['en' => (string)$def['label']],
             ];
+
+            if ($targetType === 'double') {
+                $precision = in_array(strtolower($bitrixName), ['reelly_latitude', 'reelly_longitude'], true) ? 6 : 2;
+                $fieldPayload['settings'] = ['PRECISION' => $precision];
+            }
 
             if ($targetType === 'enumeration' && !empty($def['enum_values'])) {
                 $enumItems = [];
